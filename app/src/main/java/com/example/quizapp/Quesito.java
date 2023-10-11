@@ -4,10 +4,19 @@ public class Quesito {
     private String testo;
     private boolean risposta;
     private boolean given = false;
+    private boolean hinted = false;
 
     public Quesito(String testo, boolean risposta) {
         this.testo = testo;
         this.risposta = risposta;
+    }
+
+    public boolean isHinted() {
+        return hinted;
+    }
+
+    public void setHinted(boolean hinted) {
+        this.hinted = hinted;
     }
 
     public boolean isGiven() {
