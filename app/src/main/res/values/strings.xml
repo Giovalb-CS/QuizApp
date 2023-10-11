@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="quesito_numero_it">Quesito</string>
+    <string name="precedente_it">Prec.</string>
+    <string name="vero_it">Vero</string>
+    <string name="falso_it">Falso</string>
+    <string name="successivo_it">Succ.</string>
+    <string name="suggerimento_it">Suggerimento💡</string>
+</resources>
