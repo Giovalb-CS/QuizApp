@@ -29,7 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:text="ciao">
+            android:text="Domanda:"
+            android:textStyle="bold"
+            android:textSize="26dp">
         </TextView>
 
         <LinearLayout
@@ -38,10 +40,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_centerInParent="true"
-            android:layout_below="@id/quesito_testo">
+            android:layout_below="@id/quesito_testo"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp">
 
             <Button
                 android:id="@+id/bottone_precedente"
+                android:onClick="precedentePremuto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/precedente_it">
@@ -49,24 +54,35 @@
 
             <Button
                 android:id="@+id/bottone_vero"
+                android:onClick="veroPremuto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/vero_it"
                 android:backgroundTint="@color/green"
-                android:textColor="@color/white">
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="4dp"
+                android:textSize="20dp">
             </Button>
 
             <Button
                 android:id="@+id/bottone_falso"
+                android:onClick="falsoPremuto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/falso_it"
                 android:backgroundTint="@color/red"
-                android:textColor="@color/white">
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="6dp"
+                android:textSize="20dp">
             </Button>
 
             <Button
                 android:id="@+id/bottone_successivo"
+                android:onClick="successivoPremuto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/successivo_it">
@@ -87,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="...">
+                android:text="@string/rispostecorrettevalide_it">
             </TextView>
 
             <TextView
@@ -95,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="...">
+                android:text="@string/rispostecorrettenonvalide_it">
             </TextView>
 
             <TextView
@@ -103,10 +119,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="...">
+                android:text="@string/rispostetotali_it">
             </TextView>
 
             <Button
+                android:id="@+id/bottone_suggerimento"
+                android:onClick="suggerimentoPremuto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/suggerimento_it"

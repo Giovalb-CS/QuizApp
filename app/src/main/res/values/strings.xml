@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">QuizApp</string>
-    <string name="quesito_numero_it">Quesito</string>
+    <string name="quesito_numero_it">Quesito n.</string>
     <string name="precedente_it">Prec.</string>
     <string name="vero_it">Vero</string>
     <string name="falso_it">Falso</string>
     <string name="successivo_it">Succ.</string>
     <string name="suggerimento_it">Suggerimento💡</string>
+    <string name="rispostecorrettevalide_it">Risposte Corrette Valide:</string>
+    <string name="rispostecorrettenonvalide_it">Risposte Corrette Non Valide:</string>
+    <string name="rispostetotali_it">Risposte Totali:</string>
 </resources>
