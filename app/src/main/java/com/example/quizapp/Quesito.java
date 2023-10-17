@@ -1,6 +1,8 @@
 package com.example.quizapp;
 
 public class Quesito {
+    private static int nextQuestionID = 0;
+    private final int questionID;
     private String testo;
     private boolean risposta;
     private boolean given = false;
@@ -9,6 +11,12 @@ public class Quesito {
     public Quesito(String testo, boolean risposta) {
         this.testo = testo;
         this.risposta = risposta;
+        questionID = nextQuestionID;
+        nextQuestionID++;
+    }
+
+    public int getQuestionID() {
+        return questionID;
     }
 
     public boolean isHinted() {
