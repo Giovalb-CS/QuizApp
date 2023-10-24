@@ -80,11 +80,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void veroPremuto(View view){
-
+        Quesito quesitoAttuale = quesiti.get(quesitoPos);
+        quesitoAttuale.setGiven(true);
+        quesitoAttuale.setUserAnswer(true);
+        if (!quesitoAttuale.isHinted()){
+            risposteCorretteValide++;
+            TVRisposteCorretteValide.setText((CharSequence) (getText(R.string.rispostecorrettevalide_it) + " " + risposteCorretteValide));
+            if (quesitoAttuale.getRisposta() == quesitoAttuale.getUserAnswer()){
+                risposteCorrette++;
+                TVRisposteCorrette.setText((CharSequence) (getText(R.string.rispostetotali_it) + " " + risposteCorrette));
+            }
+        }
+        else{
+            risposteCorretteNonValide++;
+            TVRisposteCorretteNonValide.setText((CharSequence) (getText(R.string.rispostecorrettenonvalide_it) + " " + risposteCorretteNonValide));
+        }
+        this.successivoPremuto(view);
     }
 
     public void falsoPremuto(View view){
-
+        Quesito quesitoAttuale = quesiti.get(quesitoPos);
+        quesitoAttuale.setGiven(true);
+        quesitoAttuale.setUserAnswer(false);
+        if (!quesitoAttuale.isHinted()){
+            risposteCorretteValide++;
+            TVRisposteCorretteValide.setText((CharSequence) (getText(R.string.rispostecorrettevalide_it) + " " + risposteCorretteValide));
+            if (quesitoAttuale.getRisposta() == quesitoAttuale.getUserAnswer()){
+                risposteCorrette++;
+                TVRisposteCorrette.setText((CharSequence) (getText(R.string.rispostetotali_it) + " " + risposteCorrette));
+            }
+        }
+        else{
+            risposteCorretteNonValide++;
+            TVRisposteCorretteNonValide.setText((CharSequence) (getText(R.string.rispostecorrettenonvalide_it) + " " + risposteCorretteNonValide));
+        }
+        this.successivoPremuto(view);
     }
 
     public void successivoPremuto(View view){
