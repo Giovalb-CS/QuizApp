@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     TextView TVRisposteCorrette;
     private int risposteCorrette;
     ArrayList<Quesito> quesiti = new ArrayList<>();
+    private int quesitoPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +50,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void startQuiz(){
         Quesito quesitoAttuale = quesiti.get(0);
-        TVnumero_quesito.setText(R.string.quesito_numero_it + " " + (quesitoAttuale.getQuestionID()+1));
-        TVquesito_testo.setText("Domanda: " + quesitoAttuale.getTesto());
+        quesitoPos = quesitoAttuale.getQuestionID();
+        TVnumero_quesito.setText((CharSequence) (getText(R.string.quesito_numero_it) + " " + (quesitoAttuale.getQuestionID()+1)));
+        TVquesito_testo.setText((CharSequence) ("Domanda: " + quesitoAttuale.getTesto()));
         risposteCorretteValide = 0;
         risposteCorretteNonValide = 0;
         risposteCorrette = 0;
-        TVRisposteCorretteValide.setText(R.string.rispostecorrettevalide_it + " " + risposteCorretteValide);
-        TVRisposteCorretteNonValide.setText(R.string.rispostecorrettenonvalide_it + " " + risposteCorretteNonValide);
-        TVRisposteCorrette.setText(R.string.rispostetotali_it + " " + risposteCorrette);
+        TVRisposteCorretteValide.setText((CharSequence) (getText(R.string.rispostecorrettevalide_it) + " " + risposteCorretteValide));
+        TVRisposteCorretteNonValide.setText((CharSequence) (getText(R.string.rispostecorrettenonvalide_it) + " " + risposteCorretteNonValide));
+        TVRisposteCorrette.setText((CharSequence) (getText(R.string.rispostetotali_it) + " " + risposteCorrette));
     }
 
     public void precedentePremuto(View view){
+        if (quesitoPos > 0){
+            quesitoPos--;
+        }
+        else{
+            quesitoPos = quesiti.get(quesiti.size()-1).getQuestionID();
+        }
+        Quesito quesitoAttuale = quesiti.get(quesitoPos);
 
+        if (!quesitoAttuale.isGiven()){
+            TVnumero_quesito.setText((CharSequence) (getText(R.string.quesito_numero_it) + " " + (quesitoAttuale.getQuestionID()+1)));
+            TVquesito_testo.setText((CharSequence) ("Domanda: " + quesitoAttuale.getTesto()));
+        }
+        else {
+            this.precedentePremuto(view);
+        }
     }
 
     public void veroPremuto(View view){
@@ -72,7 +88,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void successivoPremuto(View view){
+        if (quesitoPos < quesiti.size()-1){
+            quesitoPos++;
+        }
+        else{
+            quesitoPos = quesiti.get(0).getQuestionID();
+        }
+        Quesito quesitoAttuale = quesiti.get(quesitoPos);
 
+        if (!quesitoAttuale.isGiven()){
+            TVnumero_quesito.setText((CharSequence) (getText(R.string.quesito_numero_it) + " " + (quesitoAttuale.getQuestionID()+1)));
+            TVquesito_testo.setText((CharSequence) ("Domanda: " + quesitoAttuale.getTesto()));
+        }
+        else {
+            this.successivoPremuto(view);
+        }
     }
 
     public void suggerimentoPremuto(View view){

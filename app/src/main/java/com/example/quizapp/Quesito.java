@@ -5,6 +5,7 @@ public class Quesito {
     private final int questionID;
     private String testo;
     private boolean risposta;
+    private boolean userAnswer;
     private boolean given = false;
     private boolean hinted = false;
 
@@ -13,6 +14,14 @@ public class Quesito {
         this.risposta = risposta;
         questionID = nextQuestionID;
         nextQuestionID++;
+    }
+
+    public boolean getUserAnswer() {
+        return userAnswer;
+    }
+
+    public void setUserAnswer(boolean userAnswer) {
+        this.userAnswer = userAnswer;
     }
 
     public int getQuestionID() {
