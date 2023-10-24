@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QuizCheckoutActivity">
+
+    <TextView
+        android:id="@+id/Congrats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Hai completato il Quiz!"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_margin="10dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/risposteDateValide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/Congrats"
+        android:layout_margin="10dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/risposteDateNonValide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/risposteDateValide"
+        android:layout_margin="10dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/risposteCorrette"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/risposteDateNonValide"
+        android:layout_margin="10dp">
+    </TextView>
+
+</RelativeLayout>

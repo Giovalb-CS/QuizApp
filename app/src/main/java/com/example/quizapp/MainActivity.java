@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private int risposteCorrette;
     ArrayList<Quesito> quesiti = new ArrayList<>();
     private int quesitoPos;
+    private int quesitiDaDare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         quesiti.add(new Quesito("Intel ha di recente lanciato sul mercato una serie di GPU chiamata Ark?", true));
         quesiti.add(new Quesito("MIUI è il SO degli smartphone prodotti da Xiaomi?", true));
         quesiti.add(new Quesito("Steve Wozniak è il fondatore di Android?", false));
+
+        quesitiDaDare = quesiti.size();
 
         startQuiz();
     }
@@ -82,39 +85,61 @@ public class MainActivity extends AppCompatActivity {
     public void veroPremuto(View view){
         Quesito quesitoAttuale = quesiti.get(quesitoPos);
         quesitoAttuale.setGiven(true);
+        quesitiDaDare--;
         quesitoAttuale.setUserAnswer(true);
-        if (!quesitoAttuale.isHinted()){
-            risposteCorretteValide++;
-            TVRisposteCorretteValide.setText((CharSequence) (getText(R.string.rispostecorrettevalide_it) + " " + risposteCorretteValide));
-            if (quesitoAttuale.getRisposta() == quesitoAttuale.getUserAnswer()){
-                risposteCorrette++;
-                TVRisposteCorrette.setText((CharSequence) (getText(R.string.rispostetotali_it) + " " + risposteCorrette));
+
+        if (quesitiDaDare > 0){
+            if (!quesitoAttuale.isHinted()) {
+                risposteCorretteValide++;
+                TVRisposteCorretteValide.setText((CharSequence) (getText(R.string.rispostecorrettevalide_it) + " " + risposteCorretteValide));
+                if (quesitoAttuale.getRisposta() == quesitoAttuale.getUserAnswer()) {
+                    risposteCorrette++;
+                    TVRisposteCorrette.setText((CharSequence) (getText(R.string.rispostetotali_it) + " " + risposteCorrette));
+                }
             }
+            else{
+                risposteCorretteNonValide++;
+                TVRisposteCorretteNonValide.setText((CharSequence) (getText(R.string.rispostecorrettenonvalide_it) + " " + risposteCorretteNonValide));
+            }
+            this.successivoPremuto(view);
         }
-        else{
-            risposteCorretteNonValide++;
-            TVRisposteCorretteNonValide.setText((CharSequence) (getText(R.string.rispostecorrettenonvalide_it) + " " + risposteCorretteNonValide));
+        else {
+            Intent intent = new Intent(this, QuizCheckoutActivity.class);
+            intent.putExtra("risposteCorretteValide", risposteCorretteValide);
+            intent.putExtra("risposteCorretteNonValide", risposteCorretteNonValide);
+            intent.putExtra("risposteTotali", risposteCorrette);
+            startActivity(intent);
         }
-        this.successivoPremuto(view);
     }
 
     public void falsoPremuto(View view){
         Quesito quesitoAttuale = quesiti.get(quesitoPos);
         quesitoAttuale.setGiven(true);
+        quesitiDaDare--;
         quesitoAttuale.setUserAnswer(false);
-        if (!quesitoAttuale.isHinted()){
-            risposteCorretteValide++;
-            TVRisposteCorretteValide.setText((CharSequence) (getText(R.string.rispostecorrettevalide_it) + " " + risposteCorretteValide));
-            if (quesitoAttuale.getRisposta() == quesitoAttuale.getUserAnswer()){
-                risposteCorrette++;
-                TVRisposteCorrette.setText((CharSequence) (getText(R.string.rispostetotali_it) + " " + risposteCorrette));
+
+        if (quesitiDaDare > 0){
+            if (!quesitoAttuale.isHinted()) {
+                risposteCorretteValide++;
+                TVRisposteCorretteValide.setText((CharSequence) (getText(R.string.rispostecorrettevalide_it) + " " + risposteCorretteValide));
+                if (quesitoAttuale.getRisposta() == quesitoAttuale.getUserAnswer()) {
+                    risposteCorrette++;
+                    TVRisposteCorrette.setText((CharSequence) (getText(R.string.rispostetotali_it) + " " + risposteCorrette));
+                }
             }
+            else {
+                risposteCorretteNonValide++;
+                TVRisposteCorretteNonValide.setText((CharSequence) (getText(R.string.rispostecorrettenonvalide_it) + " " + risposteCorretteNonValide));
+            }
+            this.successivoPremuto(view);
         }
-        else{
-            risposteCorretteNonValide++;
-            TVRisposteCorretteNonValide.setText((CharSequence) (getText(R.string.rispostecorrettenonvalide_it) + " " + risposteCorretteNonValide));
+        else {
+            Intent intent = new Intent(this, QuizCheckoutActivity.class);
+            intent.putExtra("risposteCorretteValide", risposteCorretteValide);
+            intent.putExtra("risposteCorretteNonValide", risposteCorretteNonValide);
+            intent.putExtra("risposteTotali", risposteCorrette);
+            startActivity(intent);
         }
-        this.successivoPremuto(view);
     }
 
     public void successivoPremuto(View view){

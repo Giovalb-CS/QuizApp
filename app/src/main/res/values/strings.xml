@@ -8,5 +8,5 @@
     <string name="suggerimento_it">Suggerimento💡</string>
     <string name="rispostecorrettevalide_it">Risposte Corrette Valide:</string>
     <string name="rispostecorrettenonvalide_it">Risposte Corrette Non Valide:</string>
-    <string name="rispostetotali_it">Risposte Totali:</string>
+    <string name="rispostetotali_it">Risposte Corrette:</string>
 </resources>
