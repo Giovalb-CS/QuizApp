@@ -16,6 +16,10 @@ public class Quesito {
         nextQuestionID++;
     }
 
+    public static void resetNextQuestionID() {
+        nextQuestionID = 0;
+    }
+
     public boolean getUserAnswer() {
         return userAnswer;
     }

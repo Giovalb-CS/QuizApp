@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
@@ -131,7 +132,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/suggerimento_it"
                 android:layout_marginTop="40dp"
-                android:backgroundTint="@color/yellow">
+                android:paddingHorizontal="80dp"
+                android:backgroundTint="@color/yellow"
+                android:layout_gravity="center">
             </Button>
 
         </LinearLayout>

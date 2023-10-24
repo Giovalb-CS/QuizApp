@@ -3,7 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".QuizCheckoutActivity">
+
+    <TextView
+        android:id="@+id/emojiCongrats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:layout_above="@id/Congrats"
+        android:text="🎉"
+        android:textSize="60dp">
+    </TextView>
 
     <TextView
         android:id="@+id/Congrats"
@@ -42,5 +54,17 @@
         android:layout_below="@id/risposteDateNonValide"
         android:layout_margin="10dp">
     </TextView>
+
+    <Button
+        android:id="@+id/bottone_ripeti"
+        android:onClick="ripetiPremuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/risposteCorrette"
+        android:layout_marginTop="40dp"
+        android:text="Ripeti Test">
+
+    </Button>
 
 </RelativeLayout>

@@ -12,6 +12,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private int risposteCorretteNonValide;
     TextView TVRisposteCorrette;
     private int risposteCorrette;
-    ArrayList<Quesito> quesiti = new ArrayList<>();
+    ArrayList<Quesito> quesiti;
     private int quesitoPos;
     private int quesitiDaDare;
 
@@ -36,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         TVRisposteCorretteValide = findViewById(R.id.TVrisposteCorretteValide);
         TVRisposteCorretteNonValide = findViewById(R.id.TVrisposteCorretteNonValide);
         TVRisposteCorrette = findViewById(R.id.TVrisposteTotali);
+
+        resetQuiz();
+    }
+
+    public void resetQuiz(){
+        quesiti = new ArrayList<>();
+        Quesito.resetNextQuestionID();
 
         quesiti.add(new Quesito("Il gatto appartiene alla famiglia dei felini?", true));
         quesiti.add(new Quesito("Il felino più veloce del mondo è la lince?", false));
@@ -85,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
     public void veroPremuto(View view){
         Quesito quesitoAttuale = quesiti.get(quesitoPos);
         quesitoAttuale.setGiven(true);
-        quesitiDaDare--;
         quesitoAttuale.setUserAnswer(true);
 
         if (quesitiDaDare > 0){
@@ -101,21 +108,21 @@ public class MainActivity extends AppCompatActivity {
                 risposteCorretteNonValide++;
                 TVRisposteCorretteNonValide.setText((CharSequence) (getText(R.string.rispostecorrettenonvalide_it) + " " + risposteCorretteNonValide));
             }
-            this.successivoPremuto(view);
-        }
-        else {
-            Intent intent = new Intent(this, QuizCheckoutActivity.class);
-            intent.putExtra("risposteCorretteValide", risposteCorretteValide);
-            intent.putExtra("risposteCorretteNonValide", risposteCorretteNonValide);
-            intent.putExtra("risposteTotali", risposteCorrette);
-            startActivity(intent);
+            quesitiDaDare--;
+            if (quesitiDaDare == 0){
+                Intent intent = new Intent(this, QuizCheckoutActivity.class);
+                intent.putExtra("risposteCorretteValide", risposteCorretteValide);
+                intent.putExtra("risposteCorretteNonValide", risposteCorretteNonValide);
+                intent.putExtra("risposteTotali", risposteCorrette);
+                startActivity(intent);
+            }
+            else this.successivoPremuto(view);
         }
     }
 
     public void falsoPremuto(View view){
         Quesito quesitoAttuale = quesiti.get(quesitoPos);
         quesitoAttuale.setGiven(true);
-        quesitiDaDare--;
         quesitoAttuale.setUserAnswer(false);
 
         if (quesitiDaDare > 0){
@@ -131,15 +138,17 @@ public class MainActivity extends AppCompatActivity {
                 risposteCorretteNonValide++;
                 TVRisposteCorretteNonValide.setText((CharSequence) (getText(R.string.rispostecorrettenonvalide_it) + " " + risposteCorretteNonValide));
             }
-            this.successivoPremuto(view);
+            quesitiDaDare--;
+            if (quesitiDaDare == 0){
+                Intent intent = new Intent(this, QuizCheckoutActivity.class);
+                intent.putExtra("risposteCorretteValide", risposteCorretteValide);
+                intent.putExtra("risposteCorretteNonValide", risposteCorretteNonValide);
+                intent.putExtra("risposteTotali", risposteCorrette);
+                startActivity(intent);
+            }
+            else this.successivoPremuto(view);
         }
-        else {
-            Intent intent = new Intent(this, QuizCheckoutActivity.class);
-            intent.putExtra("risposteCorretteValide", risposteCorretteValide);
-            intent.putExtra("risposteCorretteNonValide", risposteCorretteNonValide);
-            intent.putExtra("risposteTotali", risposteCorrette);
-            startActivity(intent);
-        }
+
     }
 
     public void successivoPremuto(View view){

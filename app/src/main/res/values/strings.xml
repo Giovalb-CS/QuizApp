@@ -9,4 +9,7 @@
     <string name="rispostecorrettevalide_it">Risposte Corrette Valide:</string>
     <string name="rispostecorrettenonvalide_it">Risposte Corrette Non Valide:</string>
     <string name="rispostetotali_it">Risposte Corrette:</string>
+    <string name="risposteDateValide_it">Risposte Date:</string>
+    <string name="risposteDateNonValide_it">Risposte Suggerite:</string>
+    <string name="risposteCorrette_it">Risposte Corrette:</string>
 </resources>
